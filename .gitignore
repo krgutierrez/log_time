@@ -11,5 +11,7 @@ build/
 doc/api/
 doc/
 
+coverage/
+
 .idea/
 .vscode/
