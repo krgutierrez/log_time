@@ -1,8 +1,3 @@
-// TODO: Put public facing types in this file.
-
-
-import 'dart:math';
-
 import 'package:log_time/src/time_logger.dart';
 
 class LogTime {
@@ -44,12 +39,12 @@ class LogTime {
     return logger.status;
   }
 
-  static void end(String id) {
+  static int end(String id) {
     final timer = _mappedLoggers[id];
     if (timer == null) {
       throw ArgumentError('No TimeLogger found with id $id. Please call LogTime.start($id) first before calling LogTime.end($id)');
     }
-    timer.end();
+    return timer.end();
   }
 
 }

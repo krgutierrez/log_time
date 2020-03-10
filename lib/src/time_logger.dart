@@ -23,9 +23,9 @@ class TimeLogger {
     _status = TimeLoggerStatus.started;
   }
 
-  void end() {
+  int end() {
     if (!enabled) {
-      return;
+      return 0;
     }
     if (_status != TimeLoggerStatus.started) {
       throw UnsupportedError('Failed ending TimeLogger. Cannot call function [end] of TimeLogger since it is not yet started.');
@@ -33,5 +33,6 @@ class TimeLogger {
     _logEndInMilliseconds = DateTime.now().millisecondsSinceEpoch;
     final difference = _logEndInMilliseconds - _logStartInMilliseconds;
     _status = TimeLoggerStatus.ended;
+    return difference;
   }
 }
