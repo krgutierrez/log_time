@@ -84,14 +84,34 @@ void main() {
       expect(LogTime.getStatusById(logTimeId), equals(TimeLoggerStatus.ended));
     });
 
+    test('Log should return a instance of TimeLogger', () {
+      final logger = LogTime.log(logTimeId);
+      expect(logger, isA<TimeLogger>());
+    });
+
+    test('Calling function log should not register a [TimeLogger] in [LogTime]\'s map', () {
+      LogTime.log(logTimeId);
+      LogTime.start(logTimeId);
+      expect(LogTime.getStatusById(logTimeId), equals(TimeLoggerStatus.started));
+    });
+
   });
 
   group('Test toggling LogTime enabled', () {
 
-    test('Set LogTime.enabled to false, expect the enabled getting is false', () {
+    setUp(() {
       LogTime.enabled = false;
+    });
+
+    test('Set LogTime.enabled to false, expect the enabled getting is false', () {
       expect(LogTime.enabled, isFalse);
     });
+
+    test('Calling function log, should return a TimeLogger with status [TimeLoggerStatus.idle]', () {
+      final logger = LogTime.log('logTimeId');
+      expect(logger.status, equals(TimeLoggerStatus.idle));
+    });
+
   });
 
 }
