@@ -22,7 +22,6 @@ class LogTime {
     if (!_logEnabled) {
       return;
     }
-    final logger = _mappedLoggers[id];
     if (_mappedLoggers.containsKey(id)) {
       throw ArgumentError('There is already a registerd TimeLogger with id $id. Please use a different id');
     }
